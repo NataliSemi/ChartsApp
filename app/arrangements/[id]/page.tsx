@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Loader from "@/components/Loader";
+import { useBasket } from "@/context/BasketContext";
 
 type Arrangement = {
     _id: string;
@@ -19,6 +20,8 @@ export default function ArrangementDetailsPage() {
     const [arrangement, setArrangement] = useState<Arrangement | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const { addItem } = useBasket();
+    const [added, setAdded] = useState(false);
 
     useEffect(() => {
         fetch(`/api/arrangements/${id}`)
@@ -52,11 +55,16 @@ export default function ArrangementDetailsPage() {
         );
     }
 
-    const fondyUrl = `https://pay.fondy.eu/api/checkout/redirect/?merchant_id=${process.env.MERCHANT_ID}&order_desc=${encodeURIComponent(
-        arrangement.title
-    )}&amount=${arrangement.price * 100}&currency=USD&order_id=${
-        arrangement._id
-    }-${Date.now()}`;
+    const handleAdd = () => {
+        addItem({
+            _id: arrangement._id,
+            title: arrangement.title,
+            price: arrangement.price,
+        });
+        setAdded(true);
+        setTimeout(() => setAdded(false), 2000); // Hide notification after 2 seconds
+    };
+
 
     return (
         <main className="min-h-screen bg-neutral-950 text-white px-6 py-12 max-w-3xl mx-auto">
@@ -91,13 +99,20 @@ export default function ArrangementDetailsPage() {
             >
                 View / Download PDF
             </a>
-            <Link
-                href={fondyUrl}
-                target="_blank"
-                className="mt-2 inline-block px-4 py-2 bg-green-600 hover:bg-green-500 text-white rounded-md"
-            >
-                Buy Now
-            </Link>
+            <div className="relative inline-block">
+                <button
+                    onClick={handleAdd}
+                    className="bg-green-600 px-3 py-1 rounded text-white hover:bg-green-500 mt-4"
+                >
+                    Add to Basket
+                </button>
+
+                {added && (
+                    <div className="absolute left-0 mt-2 bg-gradient-to-r from-purple-700  to-blue-500 text-white px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 animate-jazz-pop text-sm font-semibold z-50">
+                        🎷 Added to basket! Keep swingin’!
+                    </div>
+                )}
+            </div>
         </main>
     );
 }

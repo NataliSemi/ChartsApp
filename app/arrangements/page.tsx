@@ -46,8 +46,8 @@ export default function ArrangementsPage() {
         <main className="min-h-screen bg-neutral-950 text-neutral-100 px-6 py-16 max-w-6xl mx-auto">
             <h1 className="text-4xl font-bold mb-10">Arrangements</h1>
 
-            {/* Upload Form always visible */}
-            <ArrangementUploadForm />
+
+
 
             {(!arrangements || arrangements.length === 0) ? (
                 <p className="mt-10 text-xl text-neutral-400">No arrangements yet.</p>
