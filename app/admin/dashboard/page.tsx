@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import ArrangementUploadForm from "@/components/ArrangementUploadForm";
 import DashboardClient from "@/components/DashboardClient";
 import LogoutButton from "@/components/LogoutButton";
+import AdminOrdersTable from "@/components/AdminOrdersTable";
 
 export default async function DashboardPage() {
     const isAdmin = await isAdminRequest();
@@ -24,7 +25,10 @@ export default async function DashboardPage() {
                 <h1 className="text-3xl font-bold">Admin Dashboard</h1>
                 <LogoutButton />
             </div>
-
+            <div className="space-y-8">
+                {/* Other admin sections here */}
+                <AdminOrdersTable />
+            </div>
             {/* Upload Form */}
             <section className="mb-12">
                 <h2 className="text-2xl font-semibold mb-4">
@@ -35,9 +39,7 @@ export default async function DashboardPage() {
 
             {/* Existing Charts */}
             <section>
-                <h2 className="text-2xl font-semibold mb-4">
-                    Existing Charts
-                </h2>
+                <h2 className="text-2xl font-semibold mb-4">Existing Charts</h2>
                 <DashboardClient
                     arrangements={JSON.parse(JSON.stringify(arrangements))}
                 />

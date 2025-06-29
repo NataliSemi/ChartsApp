@@ -23,7 +23,7 @@ export default function Hero() {
   return (
 <section
   className="relative flex justify-center items-start min-h-[30vh] px-6 py-16 bg-neutral-900 bg-cover bg-center"
-  style={{ backgroundImage: "url('/bg-music.png')" }}
+  style={{ backgroundImage: "url('/music1.jpg')" }}
 >
   {/* Overlay */}
   <div className="absolute inset-0 bg-black/70 pointer-events-none" />

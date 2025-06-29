@@ -8,7 +8,7 @@ export default async function Navbar() {
         <header className="bg-neutral-900 border-b border-neutral-800 text-neutral-100">
             <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                 <Link href="/" className="text-xl font-bold text-white">
-                    🎶 [Your Name]
+                    🎶 Name
                 </Link>
                 <ul className="flex gap-6 text-sm font-medium">
                     <li>
