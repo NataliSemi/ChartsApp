@@ -9,7 +9,7 @@ import AdminOrdersTable from "@/components/AdminOrdersTable";
 
 export default async function DashboardPage() {
     const isAdmin = await isAdminRequest();
-    if (isAdmin) {
+    if (!isAdmin) {
         redirect("/");
     }
 
