@@ -65,7 +65,6 @@ export default function ArrangementDetailsPage() {
         setTimeout(() => setAdded(false), 2000); // Hide notification after 2 seconds
     };
 
-
     return (
         <main className="min-h-screen bg-neutral-950 text-white px-6 py-12 max-w-3xl mx-auto">
             <Link
@@ -90,28 +89,30 @@ export default function ArrangementDetailsPage() {
             <p className="text-lg font-semibold mb-6">
                 ${arrangement.price.toFixed(2)}
             </p>
-
-            <a
-                href={arrangement.pdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-xl transition"
-            >
-                View / Download PDF
-            </a>
-            <div className="relative inline-block">
-                <button
-                    onClick={handleAdd}
-                    className="bg-green-600 px-3 py-1 rounded text-white hover:bg-green-500 mt-4"
+            <div className="mt-6 flex flex-col sm:flex-row gap-4 sm:items-center">
+                <a
+                    href={arrangement.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl transition font-medium text-center"
                 >
-                    Add to Basket
-                </button>
+                    View / Download PDF
+                </a>
 
-                {added && (
-                    <div className="absolute left-0 mt-2 bg-gradient-to-r from-purple-700  to-blue-500 text-white px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 animate-jazz-pop text-sm font-semibold z-50">
-                        🎷 Added to basket! Keep swingin’!
-                    </div>
-                )}
+                <div className="relative">
+                    <button
+                        onClick={handleAdd}
+                        className="bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-xl font-medium transition"
+                    >
+                        Add to Basket
+                    </button>
+
+                    {added && (
+                        <div className="absolute left-0 mt-2 bg-gradient-to-r from-purple-700 to-blue-500 text-white px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 animate-jazz-pop text-sm font-semibold z-50">
+                            🎷 Added to basket! Keep swingin’!
+                        </div>
+                    )}
+                </div>
             </div>
         </main>
     );
