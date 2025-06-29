@@ -8,10 +8,6 @@ export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const isAdmin = await isAdminRequest();
-  if (!isAdmin) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
 
   await connectDB();
   const { id } = await params;
